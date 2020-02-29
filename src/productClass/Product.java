@@ -1,16 +1,19 @@
+package productClass;
+
 public class Product {
-    int number;
+    String name;
     int priceRub;
     int priceCop;
 
-    Product (int priceRub, int priceCop, int number) {
+    Product (int priceRub, int priceCop, String name) {
         this.priceRub = priceRub;
         this.priceCop = priceCop;
-        this.number = number;
+        this.name = name;
+
     }
 
-    public int getName() {
-        return number;
+    public String getName() {
+        return name;
     }
 
     public int getRub() {
@@ -26,14 +29,13 @@ public class Product {
 
     @Override
     public String toString() {
-        return "\n Номер Продукта: " + number + "\n Цена: " + priceRub + "," + priceCop;
+        return "\n Имя продукта: " + name + "\n Цена: " + priceRub + "," + priceCop;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = result * prime + number;
         result = result * prime + priceRub;
         result = result * prime + priceCop;
         return result;
@@ -48,7 +50,7 @@ public class Product {
             return false;
         }
         Product other = (Product) o;
-        return (other.number == number) && (other.priceRub == priceRub) && (other.priceCop == priceCop);
+        return (other.name.equals(name)) && (other.priceRub == priceRub) && (other.priceCop == priceCop);
     }
 
 }
