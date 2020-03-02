@@ -19,30 +19,25 @@ public class ProductList {
     }
 
     public boolean changeName(int number, String name) {
-        try {
+        if (mapOfProducts.containsKey(number)) {
             mapOfProducts.get(number).name = name;
-        } catch (NullPointerException e) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean changePrice(int number,int rub, int cop) {
-        try {
+        if (mapOfProducts.containsKey(number)) {
             mapOfProducts.get(number).priceRub = rub;
             mapOfProducts.get(number).priceCop = cop;
-        } catch (NullPointerException e) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public double getPrice(int number, int counter) {
-        if (mapOfProducts.containsKey(number)) {
             final int cost = counter * (100 * mapOfProducts.get(number).priceRub + mapOfProducts.get(number).priceCop);
             return ((double) cost) / 100;
-        }
-        return 0.0;
     }
 
 
