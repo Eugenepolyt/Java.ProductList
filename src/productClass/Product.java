@@ -1,5 +1,6 @@
 package productClass;
 
+
 public class Product {
     String name;
     int priceRub;

@@ -1,5 +1,6 @@
 package productClass;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,12 +36,14 @@ public class ProductList {
         return false;
     }
 
-    public double getPrice(int number, int counter) {
+    public BigDecimal getPrice(int number, int counter) {
         if (mapOfProducts.containsKey(number)) {
-            final int cost = counter * (100 * mapOfProducts.get(number).priceRub + mapOfProducts.get(number).priceCop);
-            return ((double) cost) / 100;
+            double decimal =
+                    counter * (100 * mapOfProducts.get(number).priceRub + mapOfProducts.get(number).priceCop) / 100.0;
+            String a = decimal + "";
+            return new BigDecimal(a);
         }
-        return 0.0;
+        return new BigDecimal(0);
     }
 
 

@@ -1,9 +1,13 @@
 package productClass;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
+
+
 
 public class Test {
     @org.junit.Test
@@ -106,8 +110,9 @@ public class Test {
         i.add(2, new Product(34, 55,"Марс"));
         i.add(1, new Product(68, 11,"Марс2"));
 
-        assertEquals(310.95, i.getPrice(2, 9), 0.01);
-        assertEquals(3064.95, i.getPrice(1, 45), 0.01);
+
+        assertEquals(new BigDecimal(31095).setScale(2, RoundingMode.CEILING), i.getPrice(2, 9));
+        assertEquals(new BigDecimal(3064.95), i.getPrice(1, 45));
 
     }
 
