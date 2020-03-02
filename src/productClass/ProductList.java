@@ -7,7 +7,7 @@ public class ProductList {
     final Map<Integer, Product> mapOfProducts = new HashMap<>();
 
     public boolean add(int number, Product product) {
-        if ((mapOfProducts.containsKey(number)) || (product.priceCop > 99)) {
+        if (product.priceCop > 99) {
             return false;
         }
         mapOfProducts.put(number, product);
@@ -36,10 +36,12 @@ public class ProductList {
     }
 
     public double getPrice(int number, int counter) {
+        if (mapOfProducts.containsKey(number)) {
             final int cost = counter * (100 * mapOfProducts.get(number).priceRub + mapOfProducts.get(number).priceCop);
             return ((double) cost) / 100;
+        }
+        return 0.0;
     }
-
 
 
     @Override

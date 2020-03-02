@@ -23,8 +23,9 @@ public class Product {
     public int getCop() {
         return priceCop;
     }
+
     public String getFull() {
-        return priceRub + "," + priceCop;
+        return priceRub + "." + priceCop;
     }
 
     @Override
@@ -36,6 +37,7 @@ public class Product {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = result * prime + name.hashCode();
         result = result * prime + priceRub;
         result = result * prime + priceCop;
         return result;
