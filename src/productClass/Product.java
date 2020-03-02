@@ -1,14 +1,21 @@
 package productClass;
 
 
+import java.math.BigDecimal;
+
 public class Product {
     String name;
-    int priceRub;
-    int priceCop;
+    BigDecimal priceRub;
+    BigDecimal priceCop;
 
-    Product (int priceRub, int priceCop, String name) {
-        this.priceRub = priceRub;
-        this.priceCop = priceCop;
+    Product (BigDecimal priceRub, BigDecimal priceCop, String name) {
+        if (priceRub.intValue() <= 0 || priceCop.intValue() <= 0 || priceCop.intValue() > 99) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.priceRub = priceRub;
+            this.priceCop = priceCop;
+        }
         this.name = name;
 
     }
@@ -17,11 +24,11 @@ public class Product {
         return name;
     }
 
-    public int getRub() {
+    public BigDecimal getRub() {
         return priceRub;
     }
 
-    public int getCop() {
+    public BigDecimal getCop() {
         return priceCop;
     }
 
@@ -39,8 +46,8 @@ public class Product {
         final int prime = 31;
         int result = 1;
         result = result * prime + name.hashCode();
-        result = result * prime + priceRub;
-        result = result * prime + priceCop;
+        result = result * prime + priceRub.intValue();
+        result = result * prime + priceCop.intValue();
         return result;
     }
 
@@ -53,7 +60,7 @@ public class Product {
             return false;
         }
         Product other = (Product) o;
-        return (other.name.equals(name)) && (other.priceRub == priceRub) && (other.priceCop == priceCop);
+        return (other.name.equals(name)) && (other.priceRub.equals(priceRub)) && (other.priceCop.equals(priceCop));
     }
 
 }
