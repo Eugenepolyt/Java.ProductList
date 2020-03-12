@@ -5,16 +5,16 @@ import java.math.BigDecimal;
 
 public class Product {
     String name;
-    BigDecimal priceRub;
-    BigDecimal priceCop;
+    BigDecimal price;
 
-    Product (BigDecimal priceRub, BigDecimal priceCop, String name) {
-        if (priceRub.intValue() <= 0 || priceCop.intValue() <= 0 || priceCop.intValue() > 99) {
+    Product (BigDecimal price, String name) {
+        final String priceStr = Double.toString(price.doubleValue());
+        final int cop = Integer.parseInt(priceStr.substring(priceStr.indexOf(".") + 1));
+        if (price.intValue() <= 0 || cop > 99 || cop <= 0) {
             throw new IllegalArgumentException();
         }
         else {
-            this.priceRub = priceRub;
-            this.priceCop = priceCop;
+            this.price = price;
         }
         this.name = name;
 
@@ -24,21 +24,22 @@ public class Product {
         return name;
     }
 
-    public BigDecimal getRub() {
-        return priceRub;
+    public int getRub() {
+        return price.intValue();
     }
 
-    public BigDecimal getCop() {
-        return priceCop;
+    public double getCop() {
+        final String priceStr = Double.toString(price.doubleValue());
+        return Integer.parseInt(priceStr.substring(priceStr.indexOf(".") + 1));
     }
 
-    public String getFull() {
-        return priceRub + "." + priceCop;
+    public BigDecimal getFull() {
+        return price;
     }
 
     @Override
     public String toString() {
-        return "\n Имя продукта: " + name + "\n Цена: " + priceRub + "," + priceCop;
+        return "\n Имя продукта: " + name + "\n Цена: " + price ;
     }
 
     @Override
@@ -46,8 +47,7 @@ public class Product {
         final int prime = 31;
         int result = 1;
         result = result * prime + name.hashCode();
-        result = result * prime + priceRub.intValue();
-        result = result * prime + priceCop.intValue();
+        result = result * prime + price.intValue();
         return result;
     }
 
@@ -60,7 +60,7 @@ public class Product {
             return false;
         }
         Product other = (Product) o;
-        return (other.name.equals(name)) && (other.priceRub.equals(priceRub)) && (other.priceCop.equals(priceCop));
+        return (other.name.equals(name)) && (other.price.equals(price));
     }
 
 }
